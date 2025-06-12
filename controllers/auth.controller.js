@@ -29,7 +29,7 @@ export async function loginController(req, res, next) {
       .cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
+        sameSite: "None",
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .status(200)
@@ -75,7 +75,7 @@ export function logoutController (req, res, next) {
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: true,
-      sameSite: "Strict",
+      sameSite: "None",
     });
 
     res.status(200).json({ message: "Logged out Successfully" });
