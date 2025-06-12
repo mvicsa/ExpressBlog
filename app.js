@@ -12,8 +12,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = process.env.CORS_ORIGINS.split(";");
+
 const corsOptions = {
-  origin: [process.env.CLIENT_ORIGIN],
+  origin: allowedOrigins,
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
 };
