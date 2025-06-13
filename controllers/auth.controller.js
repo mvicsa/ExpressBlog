@@ -28,7 +28,7 @@ export async function loginController(req, res, next) {
     res
       .cookie("refreshToken", refreshToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        secure: true,
         sameSite: "None",
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
@@ -54,7 +54,7 @@ export function refreshTokenController(req, res, next) {
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
-      return res.status(401).json({ message: "Refresh token not found, login again." });
+      return res.status(401).json({ message: "No refresh token found. Please login again." });
     }
 
     jwt.verify(refreshToken, JWT_REFRESH_SECRET, (err, decoded) => {
