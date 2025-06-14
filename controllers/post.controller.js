@@ -64,7 +64,7 @@ export const addNewPostController = async (req, res) => {
 export const updatePostController = async (req, res) => {
   const { postId } = req.params;
   const postData = req.body;
-  const { id: userId } = req.user.id;
+  const { id: userId } = req.user;
 
   try {
     const post = await getPostById(postId);
@@ -96,7 +96,7 @@ export const updatePostController = async (req, res) => {
 // Delete Post Controller
 export const deletePostController = async (req, res) => {
   const { postId } = req.params;
-  const { id: userId } = req.user.id;
+  const { id: userId } = req.user;
 
   try {
     const post = await getPostById(postId);
