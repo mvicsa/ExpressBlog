@@ -67,7 +67,7 @@ export const updatePostController = async (req, res) => {
   const { id: userId } = req.user.id;
 
   try {
-    const post = getPostById(postId);
+    const post = await getPostById(postId);
 
     if (post && post.createdBy._id !== userId) {
       res.status(403).json({
@@ -99,7 +99,7 @@ export const deletePostController = async (req, res) => {
   const { id: userId } = req.user.id;
 
   try {
-    const post = getPostById(postId);
+    const post = await getPostById(postId);
 
     if (post && post.createdBy._id !== userId) {
       res.status(403).json({
