@@ -69,7 +69,7 @@ export const updatePostController = async (req, res) => {
   try {
     const post = await getPostById(postId);
 
-    if (post && post.createdBy._id !== userId) {
+    if (post && !post.createdBy._id.equals(userId)) {
       res.status(403).json({
         message: "Access Denied!"
       });
@@ -101,7 +101,7 @@ export const deletePostController = async (req, res) => {
   try {
     const post = await getPostById(postId);
 
-    if (post && post.createdBy._id !== userId) {
+    if (post && !post.createdBy._id.equals(userId)) {
       res.status(403).json({
         message: "Access Denied!"
       });
